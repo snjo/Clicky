@@ -1,0 +1,29 @@
+﻿<Window x:Class="Clicky.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clicky"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="315" Width="230">
+    <Grid>
+        <Button x:Name="ButtonStartClicking" Content="Start clicking" Margin="10,35,10,0" VerticalAlignment="Top" Click="ButtonStartClicking_Click" Height="20"/>
+        <CheckBox x:Name="CheckboxStopOnMouseMove" Content="Stop when mouse moves" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
+        <CheckBox x:Name="CheckboxStopOnCtrl" Content="Stop when Ctrl pressed" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
+        <CheckBox x:Name="CheckboxStopOnCountdown" Content="Use countdown to stop" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
+        <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="10,64,10,0" Width="Auto"/>
+        <Button x:Name="ButtonOptions" Content="⚙" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="ButtonOptions_Click"/>
+
+        <Label Content="Clicks per second" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxClickPerSecond" HorizontalAlignment="Left" Margin="115,144,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged"/>
+
+        <Label Content="Duration (s)" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxDuration" HorizontalAlignment="Left" Margin="115,166,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged"/>
+
+        <Label Content="Start delay (s)" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxStartDelay" HorizontalAlignment="Left" Margin="115,188,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged"/>
+        <Button Content="Count clicks" HorizontalAlignment="Left" Margin="10,221,0,0" VerticalAlignment="Top" Width="77" Click="ButtonTestClicks_Click"/>
+        <Label x:Name="LabelClickCount" Content="0" HorizontalAlignment="Left" Margin="99,218,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="CheckboxAlwaysOnTop" Content="Always on top" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top" Checked="AlwaysOnTopChanged" Unchecked="AlwaysOnTopChanged"/>
+    </Grid>
+</Window>
