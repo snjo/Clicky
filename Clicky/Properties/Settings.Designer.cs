@@ -290,9 +290,9 @@ namespace Clicky.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string StartDelay {
+        public int StartDelay {
             get {
-                return ((string)(this["StartDelay"]));
+                return ((int)(this["StartDelay"]));
             }
             set {
                 this["StartDelay"] = value;

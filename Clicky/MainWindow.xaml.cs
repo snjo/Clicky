@@ -50,7 +50,7 @@ namespace Clicky
         {
             InitializeComponent();
             settings.Reload();
-            ApplySettings();
+            ApplySettingsToControls();
 
             waitForStartTimer.Tick += new EventHandler(WaitForStart_Tick);
             clickIntervalTimer.Tick += new EventHandler(OnTimer);
@@ -168,9 +168,14 @@ namespace Clicky
         {
             if (sender is TextBox textbox)
             {
-                if (IsNumber(textbox.Text) == false)
+                if (IsNumber(e.Text) == false)
                 {
+                    Debug.WriteLine("Preview text is not number");
                     e.Handled = true;
+                }
+                else
+                {
+                    Debug.WriteLine("Preview text IS number");
                 }
             }
         }
@@ -186,6 +191,7 @@ namespace Clicky
             {
                 if (IsNumber(textbox.Text) == false)
                 {
+                    Debug.WriteLine("text is not number");
                     StringBuilder sb = new();
                     foreach (char c in textbox.Text)
                     {
@@ -195,10 +201,21 @@ namespace Clicky
                     {
                         textbox.Text = sb.ToString();
                     }
-                    else
-                    {
-                        textbox.Text = textbox.Tag.ToString();
-                    }
+                }
+                else
+                {
+                    Debug.WriteLine("text IS number");
+                }
+            }
+        }
+
+        private void Numeric_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textbox)
+            {
+                if (textbox.Text.Length == 0 || IsNumber(textbox.Text) == false)
+                {
+                    textbox.Text = textbox.Tag.ToString();
                 }
             }
         }
@@ -242,7 +259,7 @@ namespace Clicky
         {
             if (sender is CheckBox cb)
                 checkSafety(cb);
-            UpdateCheckboxSettings();
+            //UpdateCheckboxSettings();
         }
 
         private void ButtonOptions_Click(object sender, RoutedEventArgs e)
@@ -330,12 +347,12 @@ namespace Clicky
             if (starting == false)
             {
                 if (CheckboxAlwaysOnTop.IsChecked != null) settings.AlwaysOnTop = (bool)CheckboxAlwaysOnTop.IsChecked;
-                SaveSetting();
+                //SaveSetting();
             }
             Topmost = settings.AlwaysOnTop;
         }
 
-        public void ApplySettings()
+        public void ApplySettingsToControls()
         {
             Debug.WriteLine($"Settings: {settings.StopOnMouseMove} {settings.StopOnCtrl} {settings.StopOnCountdown} {settings.ToggleClickingKey}");
             CheckboxStopOnMouseMove.IsChecked = settings.StopOnMouseMove;
@@ -343,26 +360,65 @@ namespace Clicky
             CheckboxStopOnCountdown.IsChecked = settings.StopOnCountdown;
             Debug.WriteLine($"Checks  : {CheckboxStopOnMouseMove.IsChecked} {CheckboxStopOnCtrl.IsChecked} {CheckboxStopOnCountdown.IsChecked} {settings.ToggleClickingKey}");
             Debug.WriteLine($"Settings: {settings.StopOnMouseMove} {settings.StopOnCtrl} {settings.StopOnCountdown} {settings.ToggleClickingKey}");
-            TextBoxDuration.Text = settings.Duration.ToString();
-            TextBoxClickPerSecond.Text = settings.ClicksPerSecond.ToString();
-            TextBoxStartDelay.Text = settings.StartDelay.ToString();
+            //TextBoxDuration.Text = settings.Duration.ToString();
+            //TextBoxClickPerSecond.Text = settings.ClicksPerSecond.ToString();
+            //TextBoxStartDelay.Text = settings.StartDelay.ToString();
+            Duration = settings.Duration;
+            ClicksPerSecond = settings.ClicksPerSecond;
+            StartDelay = settings.StartDelay;
             CheckboxAlwaysOnTop.IsChecked = settings.AlwaysOnTop;
         }
 
-        private void UpdateCheckboxSettings()
-        {
-            Debug.WriteLine("Updating checkboxes");
-            if (starting)
-            {
-                //Aborting checkbox update, program is starting up
-                return;
-            }
+        //private void UpdateCheckboxSettings()
+        //{
+        //    Debug.WriteLine("Updating checkboxes");
+        //    if (starting)
+        //    {
+        //        //Aborting checkbox update, program is starting up
+        //        return;
+        //    }
 
-            if (CheckboxStopOnCtrl.IsChecked != null) settings.StopOnCtrl = (bool)CheckboxStopOnCtrl.IsChecked;
-            if (CheckboxStopOnMouseMove.IsChecked != null) settings.StopOnMouseMove = (bool)CheckboxStopOnMouseMove.IsChecked;
-            if (CheckboxStopOnCountdown.IsChecked != null) settings.StopOnCountdown = (bool)CheckboxStopOnCountdown.IsChecked;
-            if (CheckboxAlwaysOnTop.IsChecked != null) settings.AlwaysOnTop = (bool)CheckboxAlwaysOnTop.IsChecked;
-            SaveSetting();
+        //    if (CheckboxStopOnCtrl.IsChecked != null) settings.StopOnCtrl = (bool)CheckboxStopOnCtrl.IsChecked;
+        //    if (CheckboxStopOnMouseMove.IsChecked != null) settings.StopOnMouseMove = (bool)CheckboxStopOnMouseMove.IsChecked;
+        //    if (CheckboxStopOnCountdown.IsChecked != null) settings.StopOnCountdown = (bool)CheckboxStopOnCountdown.IsChecked;
+        //    if (CheckboxAlwaysOnTop.IsChecked != null) settings.AlwaysOnTop = (bool)CheckboxAlwaysOnTop.IsChecked;
+        //    //SaveSetting();
+        //}
+
+        private int ClicksPerSecond
+        {
+            get
+            {
+                return GetNumericValue(TextBoxClickPerSecond);
+            }
+            set
+            {
+                TextBoxClickPerSecond.Text = value.ToString();
+            }
+        }
+
+        private int Duration
+        {
+            get
+            {
+                return GetNumericValue(TextBoxDuration);
+            }
+            set
+            {
+                TextBoxDuration.Text = value.ToString();
+            }
+        }
+
+        private int StartDelay
+        {
+            get
+            {
+                return GetNumericValue(TextBoxStartDelay);
+            }
+            set
+            {
+                TextBoxStartDelay.Text = value.ToString();
+            }
         }
 
         private void SaveSetting()
@@ -372,14 +428,24 @@ namespace Clicky
                 //Skipping Save settings, program is starting
                 return;
             }
+            settings.ClicksPerSecond = ClicksPerSecond;
+            settings.Duration = Duration;
+            settings.StartDelay = StartDelay;
+            if (CheckboxStopOnCtrl.IsChecked != null) settings.StopOnCtrl = (bool)CheckboxStopOnCtrl.IsChecked;
+            if (CheckboxStopOnMouseMove.IsChecked != null) settings.StopOnMouseMove = (bool)CheckboxStopOnMouseMove.IsChecked;
+            if (CheckboxStopOnCountdown.IsChecked != null) settings.StopOnCountdown = (bool)CheckboxStopOnCountdown.IsChecked;
+            if (CheckboxAlwaysOnTop.IsChecked != null) settings.AlwaysOnTop = (bool)CheckboxAlwaysOnTop.IsChecked;
             Debug.WriteLine("Saving settings");
             settings.Save();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            SaveSetting();
             HotkeyTools.ReleaseHotkeys(HotkeyList);
         }
+
+
     }
 
 

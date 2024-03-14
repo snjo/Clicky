@@ -15,13 +15,13 @@
         <Button x:Name="ButtonOptions" Content="⚙" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="ButtonOptions_Click"/>
 
         <Label Content="Clicks per second" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TextBoxClickPerSecond" HorizontalAlignment="Left" Margin="115,144,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged"/>
+        <TextBox x:Name="TextBoxClickPerSecond" HorizontalAlignment="Left" Margin="115,144,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="30" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
 
         <Label Content="Duration (s)" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TextBoxDuration" HorizontalAlignment="Left" Margin="115,166,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged"/>
+        <TextBox x:Name="TextBoxDuration" HorizontalAlignment="Left" Margin="115,166,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
 
         <Label Content="Start delay (s)" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TextBoxStartDelay" HorizontalAlignment="Left" Margin="115,188,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged"/>
+        <TextBox x:Name="TextBoxStartDelay" HorizontalAlignment="Left" Margin="115,188,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="1" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
         <Button Content="Count clicks" HorizontalAlignment="Left" Margin="10,221,0,0" VerticalAlignment="Top" Width="77" Click="ButtonTestClicks_Click"/>
         <Label x:Name="LabelClickCount" Content="0" HorizontalAlignment="Left" Margin="99,218,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="CheckboxAlwaysOnTop" Content="Always on top" HorizontalAlignment="Left" Margin="10,252,0,0" VerticalAlignment="Top" Checked="AlwaysOnTopChanged" Unchecked="AlwaysOnTopChanged"/>
