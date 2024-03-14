@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clicky"
         mc:Ignorable="d"
-        Title="MainWindow" Height="315" Width="230">
+        Title="Clicky" Height="315" Width="230" Closing="Window_Closing" Icon="/icon.ico">
     <Grid>
         <Button x:Name="ButtonStartClicking" Content="Start clicking" Margin="10,35,10,0" VerticalAlignment="Top" Click="ButtonStartClicking_Click" Height="20"/>
         <CheckBox x:Name="CheckboxStopOnMouseMove" Content="Stop when mouse moves" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>

@@ -1,14 +1,9 @@
 ﻿// add using for the active project's Properties here
 // ex: using MyApp.Properties;
-using System;
-using System.Collections.Generic;
+using Clicky.Properties;
 using System.Configuration;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-//using System.Windows.Forms;
-using Clicky.Properties;
 
 namespace Hotkeys
 {
@@ -82,7 +77,6 @@ namespace Hotkeys
             if (ghk == null) return false;
             if (ghk.Register())
             {
-                Debug.WriteLine("Registered hotkey named " + ghk.displayName + ", key: " + ghk.key + ", modifiers:" + ghk.modifier);
                 return true;
             }
             else
@@ -116,10 +110,6 @@ namespace Hotkeys
                     if (!RegisterHotKey(hk.Value.ghk, false)) //register the key, add a warning to the list if it fails
                     {
                         warningKeys.Add(hk.Key);
-                    }
-                    else
-                    {
-                        Debug.WriteLine($"Hotkey registered {hk.Value.Key}, Ctrl:{hk.Value.Ctrl}, Alt:{hk.Value.Alt}, Shift:{hk.Value.Shift}, Win:{hk.Value.Win}");
                     }
                 }
             }

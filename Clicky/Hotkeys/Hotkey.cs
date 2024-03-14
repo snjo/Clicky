@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hotkeys
+﻿namespace Hotkeys
 {
     [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     [Serializable]

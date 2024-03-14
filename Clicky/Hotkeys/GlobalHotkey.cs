@@ -1,11 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 //using System.Runtime.Interop;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
-using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Controls;
 //using System.Windows.Forms;
 
 namespace Hotkeys
