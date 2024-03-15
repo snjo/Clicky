@@ -29,7 +29,7 @@
                 -->
                 
                 <StackPanel Margin="0,0,0,5" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="ButtonOptions" Content="⚙" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="ButtonOptions_Click" BorderThickness="0,0,0,0" Background="{x:Null}"/>
+                    <Button x:Name="ButtonOptions" Content="&#xE115;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="ButtonOptions_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
                     <Button x:Name="ButtonMinimize" Content="&#xE949;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="Minimize_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
                     <Button x:Name="ButtonClose" Content="&#xE106;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="CloseApplication_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
                     
