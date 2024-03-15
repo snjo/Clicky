@@ -14,7 +14,7 @@ namespace Clicky
     public partial class MainWindow : Window
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
+        private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
         private const int MOUSEEVENTF_LEFTUP = 0x04;
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
@@ -59,6 +59,13 @@ namespace Clicky
             this.TaskbarItemInfo = taskinfo;
             taskinfo.ProgressState = TaskbarItemProgressState.Normal;
             starting = false;
+            MouseDown += Windwow_MouseDown;
+        }
+
+        private void Windwow_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         public IntPtr GetHandle()
@@ -224,7 +231,7 @@ namespace Clicky
         private void ButtonTestClicks_Click(object sender, RoutedEventArgs e)
         {
             clickCount++;
-            LabelClickCount.Content = clickCount.ToString();
+            LabelClickCount.Text = clickCount.ToString();
         }
 
         private bool CheckBoxChecked(CheckBox cb, string message = "...")
@@ -271,13 +278,14 @@ namespace Clicky
         #region Hotkeys -----------------------------------------------------------------------------
 
         Properties.Settings settings = Properties.Settings.Default;
-        private HwndSource source;
+        
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
 
             IntPtr handle = new WindowInteropHelper(this).Handle;
             Debug.WriteLine($"OnSourceInitialize handle: {handle}");
+            HwndSource source;
             source = HwndSource.FromHwnd(handle);
             source.AddHook(HwndHook);
             LoadHotkeysFromSetting(handle);
@@ -445,7 +453,15 @@ namespace Clicky
             HotkeyTools.ReleaseHotkeys(HotkeyList);
         }
 
+        private void CloseApplication_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
 
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 
 
