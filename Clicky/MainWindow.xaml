@@ -8,10 +8,10 @@
         Title="Clicky" Height="315" Width="230" 
         Closing="Window_Closing" 
         Icon="/icon.ico"
-        SizeToContent="Height" ResizeMode="CanMinimize" 
+        SizeToContent="Height"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="Transparent">
+        Background="Transparent" ResizeMode="CanResizeWithGrip">
     <Grid>
         <Border Background="White" CornerRadius="5" BorderThickness="1" BorderBrush="Black">
             <StackPanel Margin="5,5">
