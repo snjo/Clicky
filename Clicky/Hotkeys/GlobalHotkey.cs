@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics;
-//using System.Runtime.Interop;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
-//using System.Windows.Forms;
 
 namespace Hotkeys
 {
@@ -15,13 +13,14 @@ namespace Hotkeys
         [DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
-        public int modifier;
-        public int key;
-        private IntPtr hWnd;
-        public int id;
-        public bool registered;
-        private bool validKey;
-        public string displayName = "Unnamed";
+        public int Modifier;
+        public int KeyCode;
+        private IntPtr WindowHandle;
+        public int ID;
+        public bool Registered;
+        private bool ValidKey;
+        public string HotkeyName = "Unnamed";
+        private string KeyName = "";
 
         public int stringToKey(string keystring)
         {
@@ -30,15 +29,13 @@ namespace Hotkeys
                 if (keystring.Length == 1)
                 {
                     char ch = keystring[0];
-                    validKey = true;
+                    ValidKey = true;
                     return (int)ch;
                 }
                 else
                 {
-                    validKey = Enum.TryParse(keystring, out Key key);
+                    ValidKey = Enum.TryParse(keystring, out Key key);
                     int convertedKey = KeyInterop.VirtualKeyFromKey(key);
-                    Debug.WriteLine($"stringToKey: {keystring} {key} {(int)key} {convertedKey}");
-                    //return (Key)key;
                     return convertedKey;
                 }
             }
@@ -47,55 +44,50 @@ namespace Hotkeys
 
         public GlobalHotkey(int modifier, string keystring, IntPtr handle, string name = "Unnamed")
         {
-            this.modifier = modifier;
-            //Key key = stringToKey(keystring);  // assigns validKey
-            //this.key = (int)key;
-            this.key = stringToKey(keystring);
-            //var handle = new WindowInteropHelper(form).Handle;
-            Debug.WriteLine($"ghk Handle:{handle}");
-            this.hWnd = handle;
-            //this.hWnd = Process.GetCurrentProcess().MainWindowHandle;
-            displayName = name;
-            id = this.GetHashCode();
+            this.Modifier = modifier;
+            this.KeyCode = stringToKey(keystring);
+            KeyName = keystring;
+            this.WindowHandle = handle;
+            HotkeyName = name;
+            ID = this.GetHashCode();
         }
 
         public GlobalHotkey()
         {
-            validKey = false;
+            ValidKey = false;
         }
 
         public override int GetHashCode()
         {
-            return modifier ^ key ^ hWnd.ToInt32();
+            return Modifier ^ KeyCode ^ WindowHandle.ToInt32();
         }
 
         public bool Register()
         {
-            if (validKey == false)
+            if (ValidKey == false)
             {
-                registered = false;
-                Debug.WriteLine("Validkey false: " + key + " / " + modifier);
-                return registered;
+                Registered = false;
+                Debug.WriteLine("Validkey false: " + KeyCode + " / " + Modifier);
+                return Registered;
             }
-            if (id != 0)
+            if (ID != 0)
             {
-                registered = RegisterHotKey(hWnd, id, modifier, key);
-                Debug.WriteLine($"Registered hotkey: {registered.ToString()} key:{key} mod:{modifier} id:{id} hWnd:{hWnd}");
-                return registered;
+                Registered = RegisterHotKey(WindowHandle, ID, Modifier, KeyCode);
+                Debug.WriteLine($"Registered hotkey: {Registered.ToString()} displayname:{HotkeyName} keystring:{KeyName} key:{KeyCode} mod:{Modifier} id:{ID} handle:{WindowHandle}");
+                return Registered;
             }
             else
             {
-                registered = false;
-                Debug.WriteLine("Unknown register hotkey error: " + key + " / " + modifier);
-                return registered;
+                Registered = false;
+                Debug.WriteLine("Unknown register hotkey error: " + KeyCode + " / " + Modifier);
+                return Registered;
             }
         }
 
         public bool Unregister()
         {
-            //Debug.WriteLine("Releasing hotkey: " + key + " / " + modifier);
-            registered = false;
-            return UnregisterHotKey(hWnd, id);
+            Registered = false;
+            return UnregisterHotKey(WindowHandle, ID);
         }
     }
 }

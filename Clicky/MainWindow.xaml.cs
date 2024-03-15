@@ -98,7 +98,7 @@ namespace Clicky
                 if (Math.Abs(MouseStartPos.X - MousePos.X) > 3 || Math.Abs(MouseStartPos.Y - MousePos.Y) > 3)
                 {
                     StopClicking();
-                    Debug.WriteLine("Mouse moved, Stop");
+                    //Debug.WriteLine("Mouse moved, Stop");
                 }
             }
 
@@ -108,7 +108,7 @@ namespace Clicky
                 if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
                 {
                     StopClicking();
-                    Debug.WriteLine("Ctrl held, Stop");
+                    //Debug.WriteLine("Ctrl held, Stop");
                 }
             }
 
@@ -177,12 +177,7 @@ namespace Clicky
             {
                 if (IsNumber(e.Text) == false)
                 {
-                    Debug.WriteLine("Preview text is not number");
                     e.Handled = true;
-                }
-                else
-                {
-                    Debug.WriteLine("Preview text IS number");
                 }
             }
         }
@@ -198,7 +193,6 @@ namespace Clicky
             {
                 if (IsNumber(textbox.Text) == false)
                 {
-                    Debug.WriteLine("text is not number");
                     StringBuilder sb = new();
                     foreach (char c in textbox.Text)
                     {
@@ -208,10 +202,6 @@ namespace Clicky
                     {
                         textbox.Text = sb.ToString();
                     }
-                }
-                else
-                {
-                    Debug.WriteLine("text IS number");
                 }
             }
         }
@@ -278,13 +268,12 @@ namespace Clicky
         #region Hotkeys -----------------------------------------------------------------------------
 
         Properties.Settings settings = Properties.Settings.Default;
-        
+
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
 
             IntPtr handle = new WindowInteropHelper(this).Handle;
-            Debug.WriteLine($"OnSourceInitialize handle: {handle}");
             HwndSource source;
             source = HwndSource.FromHwnd(handle);
             source.AddHook(HwndHook);
@@ -319,14 +308,14 @@ namespace Clicky
         {
             if (HotkeyList["StartClicking"] != null) // else so using the same hotkey for stop and start works
             {
-                if (id == HotkeyList["StartClicking"].ghk.id)
+                if (id == HotkeyList["StartClicking"].ghk.ID)
                 {
                     StartClicking();
                 }
             }
             if (HotkeyList["StopClicking"] != null)
             {
-                if (id == HotkeyList["StopClicking"].ghk.id)
+                if (id == HotkeyList["StopClicking"].ghk.ID)
                 {
                     StopClicking();
                 }
@@ -334,7 +323,7 @@ namespace Clicky
 
             if (HotkeyList["ToggleClicking"] != null)
             {
-                if (id == HotkeyList["ToggleClicking"].ghk.id)
+                if (id == HotkeyList["ToggleClicking"].ghk.ID)
                 {
                     if (clickIntervalTimer.IsEnabled)
                     {
@@ -362,36 +351,15 @@ namespace Clicky
 
         public void ApplySettingsToControls()
         {
-            Debug.WriteLine($"Settings: {settings.StopOnMouseMove} {settings.StopOnCtrl} {settings.StopOnCountdown} {settings.ToggleClickingKey}");
             CheckboxStopOnMouseMove.IsChecked = settings.StopOnMouseMove;
             CheckboxStopOnCtrl.IsChecked = settings.StopOnCtrl;
             CheckboxStopOnCountdown.IsChecked = settings.StopOnCountdown;
-            Debug.WriteLine($"Checks  : {CheckboxStopOnMouseMove.IsChecked} {CheckboxStopOnCtrl.IsChecked} {CheckboxStopOnCountdown.IsChecked} {settings.ToggleClickingKey}");
-            Debug.WriteLine($"Settings: {settings.StopOnMouseMove} {settings.StopOnCtrl} {settings.StopOnCountdown} {settings.ToggleClickingKey}");
-            //TextBoxDuration.Text = settings.Duration.ToString();
-            //TextBoxClickPerSecond.Text = settings.ClicksPerSecond.ToString();
-            //TextBoxStartDelay.Text = settings.StartDelay.ToString();
             Duration = settings.Duration;
             ClicksPerSecond = settings.ClicksPerSecond;
             StartDelay = settings.StartDelay;
             CheckboxAlwaysOnTop.IsChecked = settings.AlwaysOnTop;
         }
 
-        //private void UpdateCheckboxSettings()
-        //{
-        //    Debug.WriteLine("Updating checkboxes");
-        //    if (starting)
-        //    {
-        //        //Aborting checkbox update, program is starting up
-        //        return;
-        //    }
-
-        //    if (CheckboxStopOnCtrl.IsChecked != null) settings.StopOnCtrl = (bool)CheckboxStopOnCtrl.IsChecked;
-        //    if (CheckboxStopOnMouseMove.IsChecked != null) settings.StopOnMouseMove = (bool)CheckboxStopOnMouseMove.IsChecked;
-        //    if (CheckboxStopOnCountdown.IsChecked != null) settings.StopOnCountdown = (bool)CheckboxStopOnCountdown.IsChecked;
-        //    if (CheckboxAlwaysOnTop.IsChecked != null) settings.AlwaysOnTop = (bool)CheckboxAlwaysOnTop.IsChecked;
-        //    //SaveSetting();
-        //}
 
         private int ClicksPerSecond
         {

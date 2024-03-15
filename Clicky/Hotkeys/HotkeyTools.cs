@@ -83,7 +83,7 @@ namespace Hotkeys
             {
                 if (ghk != null)
                 {
-                    if (warning) MessageBox.Show("Could not register hotkey named " + ghk.displayName + ", key " + ghk.key);
+                    if (warning) MessageBox.Show("Could not register hotkey named " + ghk.HotkeyName + ", key " + ghk.KeyCode);
                 }
                 else
                 {

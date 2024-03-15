@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clicky"
         mc:Ignorable="d"
-        Title="Clicky" Height="315" Width="230" 
+        Title="Clicky" Height="315" Width="180" 
         Closing="Window_Closing" 
         Icon="/icon.ico"
         SizeToContent="Height"
@@ -62,7 +62,7 @@
                     <TextBlock Name="LabelClickCount" Text="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                 </StackPanel>
                 <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
-                <CheckBox x:Name="CheckboxAlwaysOnTop" Content="Always on top" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Checked="AlwaysOnTopChanged" Unchecked="AlwaysOnTopChanged"/>
+                <CheckBox x:Name="CheckboxAlwaysOnTop" Content="Always on top" HorizontalAlignment="Left" Margin="0,0,0,5" VerticalAlignment="Top" Checked="AlwaysOnTopChanged" Unchecked="AlwaysOnTopChanged"/>
             </StackPanel>
         </Border>
     </Grid>
