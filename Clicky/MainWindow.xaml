@@ -12,11 +12,11 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent" ResizeMode="CanResizeWithGrip">
-    <Grid>
-        <Border Background="White" CornerRadius="5" BorderThickness="1" BorderBrush="Black">
-            <StackPanel Margin="5,5">
-                
-                <!--
+
+    <Border Background="White" CornerRadius="5" BorderThickness="1" BorderBrush="Black">
+        <StackPanel Margin="5,5">
+
+            <!--
                     Font: Segoe MDL2 Assets
                     Minimize
                     &#xE949;
@@ -27,43 +27,42 @@
                     Close
                     #xE106;
                 -->
-                
-                <StackPanel Margin="0,0,0,5" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="ButtonOptions" Content="&#xE115;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="ButtonOptions_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
-                    <Button x:Name="ButtonMinimize" Content="&#xE949;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="Minimize_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
-                    <Button x:Name="ButtonClose" Content="&#xE106;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="CloseApplication_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
-                    
-                </StackPanel>
-                <Button x:Name="ButtonStartClicking" Content="Start clicking" Margin="0,0" VerticalAlignment="Top" Click="ButtonStartClicking_Click" Height="20"/>
 
-                <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
+            <StackPanel Margin="0,0,0,5" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ButtonOptions" Content="&#xE115;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="ButtonOptions_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
+                <Button x:Name="ButtonMinimize" Content="&#xE949;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="Minimize_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
+                <Button x:Name="ButtonClose" Content="&#xE106;" HorizontalAlignment="Right" Margin="3,0" VerticalAlignment="Top" RenderTransformOrigin="0.59,0.303" Click="CloseApplication_Click" BorderThickness="0,0,0,0" Background="{x:Null}" FontFamily="Segoe MDL2 Assets"/>
 
-                <CheckBox x:Name="CheckboxStopOnMouseMove" Content="Stop when mouse moves" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
-                <CheckBox x:Name="CheckboxStopOnCtrl" Content="Stop when Ctrl pressed" HorizontalAlignment="Left" Margin="0,2" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
-                <CheckBox x:Name="CheckboxStopOnCountdown" Content="Use countdown to stop" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
-
-                <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
-
-                <Grid Margin="0,0,0,3">
-                    <TextBlock Text="Clicks per second" HorizontalAlignment="Left" Margin="0,0" Width="117"/>
-                    <TextBox x:Name="TextBoxClickPerSecond" HorizontalAlignment="Right" Margin="0,0,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="30" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
-                </Grid>
-                <Grid Margin="0,3">
-                    <TextBlock Text="Duration (s)" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TextBoxDuration" HorizontalAlignment="Right" Margin="0,0,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
-                </Grid>
-                <Grid Margin="0,3,0,0">
-                    <TextBlock Text="Start delay (s)" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TextBoxStartDelay" HorizontalAlignment="Right" Margin="0,0,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="1" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
-                </Grid>
-                <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Count clicks" HorizontalAlignment="Left" Margin="0,0" VerticalAlignment="Top" Width="77" Click="ButtonTestClicks_Click"/>
-                    <TextBlock Name="LabelClickCount" Text="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
-                </StackPanel>
-                <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
-                <CheckBox x:Name="CheckboxAlwaysOnTop" Content="Always on top" HorizontalAlignment="Left" Margin="0,0,0,5" VerticalAlignment="Top" Checked="AlwaysOnTopChanged" Unchecked="AlwaysOnTopChanged"/>
             </StackPanel>
-        </Border>
-    </Grid>
+            <Button x:Name="ButtonStartClicking" Content="Start clicking" Margin="0,0" VerticalAlignment="Top" Click="ButtonStartClicking_Click" Height="20"/>
+
+            <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
+
+            <CheckBox x:Name="CheckboxStopOnMouseMove" Content="Stop when mouse moves" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
+            <CheckBox x:Name="CheckboxStopOnCtrl" Content="Stop when Ctrl pressed" HorizontalAlignment="Left" Margin="0,2" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
+            <CheckBox x:Name="CheckboxStopOnCountdown" Content="Use countdown to stop" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" IsChecked="True" Checked="CheckboxChanged" Unchecked="CheckboxChanged"/>
+
+            <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
+
+            <Grid Margin="0,0,0,3">
+                <TextBlock Text="Clicks per second" HorizontalAlignment="Left" Margin="0,0" Width="117"/>
+                <TextBox x:Name="TextBoxClickPerSecond" HorizontalAlignment="Right" Margin="0,0,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="30" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
+            </Grid>
+            <Grid Margin="0,3">
+                <TextBlock Text="Duration (s)" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TextBoxDuration" HorizontalAlignment="Right" Margin="0,0,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="10" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
+            </Grid>
+            <Grid Margin="0,3,0,0">
+                <TextBlock Text="Start delay (s)" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TextBoxStartDelay" HorizontalAlignment="Right" Margin="0,0,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="52" PreviewTextInput="Numeric_PreviewInput" Tag="1" TextChanged="Numeric_TextChanged" LostFocus="Numeric_LostFocus"/>
+            </Grid>
+            <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Count clicks" HorizontalAlignment="Left" Margin="0,0" VerticalAlignment="Top" Width="77" Click="ButtonTestClicks_Click"/>
+                <TextBlock Name="LabelClickCount" Text="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+            </StackPanel>
+            <Rectangle Height="1" Stroke="Black" VerticalAlignment="Top" Margin="0,10" Width="Auto"/>
+            <CheckBox x:Name="CheckboxAlwaysOnTop" Content="Always on top" HorizontalAlignment="Left" Margin="0,0,0,5" VerticalAlignment="Top" Checked="AlwaysOnTopChanged" Unchecked="AlwaysOnTopChanged"/>
+        </StackPanel>
+    </Border>
 </Window>
